@@ -1,12 +1,19 @@
 package org.mipt.planetshop.presentation.landingPage
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import org.mipt.planetshop.data.network.NasaApi
 import org.mipt.planetshop.domain.PlanetRepository
 import org.mipt.planetshop.domain.entity.Planet
+import retrofit2.Retrofit
+import retrofit2.create
 
 class LandingPageViewModel(
     private val planetRepository: PlanetRepository
@@ -20,8 +27,8 @@ class LandingPageViewModel(
 
     init {
         viewModelScope.launch {
-//            val planets: List<Planet> = planetRepository.getPlanets()
-//            _planetsList.value = planets
+            val planets: List<Planet> = planetRepository.getPlanets()
+            _planetsList.value = planets
         }
     }
 

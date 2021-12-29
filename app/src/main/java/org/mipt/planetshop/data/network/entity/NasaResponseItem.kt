@@ -1,13 +1,12 @@
 package org.mipt.planetshop.data.network.entity
 
-
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class NasaResponseItem(
     @SerialName("copyright")
-    val copyright: String?,
+    val copyright: String? = null,
     @SerialName("date")
     val date: String?,
     @SerialName("explanation")
@@ -19,7 +18,7 @@ data class NasaResponseItem(
     @SerialName("service_version")
     val serviceVersion: String?,
     @SerialName("thumbnail_url")
-    val thumbnailUrl: String?,
+    val thumbnailUrl: String? = null,
     @SerialName("title")
     val title: String?,
     @SerialName("url")
