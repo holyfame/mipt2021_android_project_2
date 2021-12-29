@@ -2,10 +2,12 @@ package org.mipt.planetshop.presentation.landingPage
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.commit
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.LandingPageBinding
 import org.mipt.planetshop.presentation.common.BaseFragment
+import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
 
 class LandingPageFragment : BaseFragment(R.layout.landing_page) {
 
@@ -18,6 +20,17 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
         viewBinding.landingPageIncreaseDate.setOnClickListener {
             count ++
             setTextToCounter()
+        }
+        viewBinding.landingPageShowGallery.setOnClickListener {
+            showGallery()
+        }
+    }
+
+    private fun showGallery() {
+        val fragment = PlanetsGalleryFragment()
+        parentFragmentManager.commit(allowStateLoss = true) {
+            replace(R.id.main_activity_container, fragment)
+            addToBackStack(null)
         }
     }
 

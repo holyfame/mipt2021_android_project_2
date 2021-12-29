@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <ImageView
+        android:id="@+id/planets_gallery_arrow_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/planets_gallery_sample_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_baseline_sports_basketball_24"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="60dp"/>
+
+    <TextView
+        android:id="@+id/planets_gallery_sample_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Планета обыкновенная"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/planets_gallery_sample_image"
+        app:layout_constraintTop_toBottomOf="@id/planets_gallery_sample_image"
+        />
+
+    <Button
+        android:id="@+id/planets_gallery_sample_buy_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="В корзину"
+        app:layout_constraintTop_toBottomOf="@id/planets_gallery_sample_description"
+        app:layout_constraintStart_toStartOf="@id/planets_gallery_sample_description"
+        >
+    </Button>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
