@@ -10,7 +10,7 @@ import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.setImageUrl
 
 class PlanetsGalleryAdapter(
-//    private val onFilmClicked: (Planet) -> Unit
+    private val onPlanetClicked: (Planet) -> Unit
 ) : ListAdapter<Planet, PlanetsGalleryAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Planet>() {
         override fun areItemsTheSame(oldItem: Planet, newItem: Planet): Boolean =
@@ -36,7 +36,7 @@ class PlanetsGalleryAdapter(
             planetItemTitle.text = item.title
             planetItemExplanation.text = item.explanation
             planetItemPicture.setImageUrl(item.url)
-//            root.setOnClickListener { onFilmClicked(item) }
+            root.setOnClickListener { onPlanetClicked(item) }
         }
     }
 

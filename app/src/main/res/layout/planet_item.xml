@@ -35,6 +35,7 @@
         android:id="@+id/planet_item_explanation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:maxLines="3"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:layout_marginHorizontal="10dp"
