@@ -17,12 +17,7 @@ import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
 class LandingPageFragment : BaseFragment(R.layout.landing_page) {
 
     private val viewBinding by viewBinding(LandingPageBinding::bind)
-    private val viewModel by viewModels<LandingPageViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T: ViewModel?> create(modelClass: Class<T>): T =
-                LandingPageViewModel(NetworkModule.getRepository()) as T
-        }
-    }
+    private val viewModel by viewModels<LandingPageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -34,9 +29,6 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
         }
         viewBinding.landingPageShowGallery.setOnClickListener {
             showGallery()
-        }
-        viewModel.planetList.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.joinToString(), Toast.LENGTH_LONG).show()
         }
     }
 
