@@ -1,10 +1,12 @@
 package org.mipt.planetshop.presentation
 
 import android.os.Bundle
+import dagger.hilt.android.AndroidEntryPoint
 import org.mipt.planetshop.R
 import org.mipt.planetshop.presentation.common.BaseActivity
 import org.mipt.planetshop.presentation.landingPage.LandingPageFragment
 
+@AndroidEntryPoint
 class MainActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,17 +1,7 @@
 package org.mipt.planetshop
 
 import android.app.Application
-import org.mipt.planetshop.di.AppComponent
-import org.mipt.planetshop.di.DaggerAppComponent
+import dagger.hilt.android.HiltAndroidApp
 
-class App : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-        component = DaggerAppComponent.create()
-    }
-
-    companion object {
-        lateinit var component: AppComponent
-    }
-}
+@HiltAndroidApp
+class App : Application()
