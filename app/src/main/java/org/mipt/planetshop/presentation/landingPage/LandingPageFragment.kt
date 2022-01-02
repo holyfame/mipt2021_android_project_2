@@ -8,12 +8,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.LandingPageBinding
 import org.mipt.planetshop.presentation.common.BaseFragment
+import org.mipt.planetshop.presentation.common.navigate
 import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
 
 class LandingPageFragment : BaseFragment(R.layout.landing_page) {
 
     private val viewBinding by viewBinding(LandingPageBinding::bind)
     private val viewModel by viewModels<LandingPageViewModel>()
+
+    private var planetsGalleryFragment = PlanetsGalleryFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,11 +32,7 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     }
 
     private fun showGallery() {
-        val fragment = PlanetsGalleryFragment()
-        parentFragmentManager.commit(allowStateLoss = true) {
-            replace(R.id.main_activity_container, fragment)
-            addToBackStack(null)
-        }
+        parentFragmentManager.navigate(planetsGalleryFragment)
     }
 
 }

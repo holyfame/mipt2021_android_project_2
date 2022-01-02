@@ -12,6 +12,7 @@ import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.PlanetsGalleryBinding
 import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.BaseFragment
+import org.mipt.planetshop.presentation.common.navigate
 import org.mipt.planetshop.presentation.planetDetails.PlanetDetailsFragment
 
 @AndroidEntryPoint
@@ -28,14 +29,10 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
             adapter = planetsGalleryAdapter
             layoutManager = LinearLayoutManager(context)
         }
-//        viewBinding.planetsGalleryArrowBack.setOnClickListener {
-//            parentFragmentManager.popBackStack()
-//        }
         viewModel.openDetailAction.observe(viewLifecycleOwner) {
             openDetail(it)
         }
         viewModel.planetsGalleryState.observe(viewLifecycleOwner) { state: PlanetsGalleryState ->
-//            Toast.makeText(requireContext(), it.joinToString(), Toast.LENGTH_LONG).show()
             when (state) {
                 is PlanetsGalleryState.Error -> {
                     viewBinding.planetsGalleryError.isVisible = true
@@ -58,10 +55,7 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
     }
 
     private fun openDetail(planet: Planet) {
-        parentFragmentManager.commit(allowStateLoss = true) {
-            replace(R.id.main_activity_container, PlanetDetailsFragment(planet))
-            addToBackStack(null)
-        }
+        parentFragmentManager.navigate(PlanetDetailsFragment(planet))
     }
 
 }
