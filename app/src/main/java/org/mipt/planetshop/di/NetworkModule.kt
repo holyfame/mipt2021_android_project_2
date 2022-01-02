@@ -1,6 +1,9 @@
 package org.mipt.planetshop.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.migration.DisableInstallInCheck
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import org.mipt.planetshop.data.PlanetRepositoryImpl
@@ -9,9 +12,12 @@ import org.mipt.planetshop.domain.PlanetRepository
 import retrofit2.Retrofit
 import retrofit2.create
 
-object NetworkModule {
+@Module
+@DisableInstallInCheck
+class NetworkModule {
 
-    private val nasaApi: NasaApi = Retrofit.Builder()
+    @Provides
+    fun provideNasaApi(): NasaApi = Retrofit.Builder()
         .baseUrl("https://api.nasa.gov")
         .addConverterFactory(
             Json(builderAction = {
@@ -22,8 +28,7 @@ object NetworkModule {
         .build()
         .create()
 
-    private var repository: PlanetRepository? = null
+    @Provides
+    fun getRepository(nasaApi: NasaApi): PlanetRepository = PlanetRepositoryImpl(nasaApi)
 
-    fun getRepository(): PlanetRepository =
-        repository ?: PlanetRepositoryImpl(nasaApi).also { repository = it }
 }

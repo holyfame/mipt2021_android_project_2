@@ -9,8 +9,9 @@ import org.mipt.planetshop.domain.PlanetRepository
 import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.SingleLiveEvent
 import org.mipt.planetshop.presentation.common.launchWithErrorHandler
+import javax.inject.Inject
 
-class PlanetsGalleryViewModel(
+class PlanetsGalleryViewModel @Inject constructor(
     private val planetRepository: PlanetRepository
 ) : ViewModel() {
 
