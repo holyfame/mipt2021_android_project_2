@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Planet Shop</string>
+    <string name="planets_gallery_error_text">Ooops, error during request</string>
 </resources>

@@ -2,6 +2,7 @@ package org.mipt.planetshop.presentation.planetsGallery
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,7 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
         super.onViewCreated(view, savedInstanceState)
 
         val planetsGalleryAdapter = PlanetsGalleryAdapter(viewModel::onPlanetClicked)
-        with(viewBinding.planetList) {
+        with(viewBinding.planetsGalleryList) {
             adapter = planetsGalleryAdapter
             layoutManager = LinearLayoutManager(context)
         }
@@ -33,9 +34,26 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
         viewModel.openDetailAction.observe(viewLifecycleOwner) {
             openDetail(it)
         }
-        viewModel.planetList.observe(viewLifecycleOwner) {
+        viewModel.planetsGalleryState.observe(viewLifecycleOwner) { state: PlanetsGalleryState ->
 //            Toast.makeText(requireContext(), it.joinToString(), Toast.LENGTH_LONG).show()
-            planetsGalleryAdapter.submitList(it)
+            when (state) {
+                is PlanetsGalleryState.Error -> {
+                    viewBinding.planetsGalleryError.isVisible = true
+                    viewBinding.planetsGalleryProgress.isVisible = false
+                    viewBinding.planetsGalleryList.isVisible = false
+                }
+                is PlanetsGalleryState.Loading -> {
+                    viewBinding.planetsGalleryError.isVisible = false
+                    viewBinding.planetsGalleryProgress.isVisible = true
+                    viewBinding.planetsGalleryList.isVisible = false
+                }
+                is PlanetsGalleryState.Success -> {
+                    viewBinding.planetsGalleryError.isVisible = false
+                    viewBinding.planetsGalleryProgress.isVisible = false
+                    viewBinding.planetsGalleryList.isVisible = true
+                    planetsGalleryAdapter.submitList(state.planets)
+                }
+            }
         }
     }
 
