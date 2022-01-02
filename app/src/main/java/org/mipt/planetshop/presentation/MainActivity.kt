@@ -6,7 +6,7 @@ import org.mipt.planetshop.presentation.common.BaseActivity
 import org.mipt.planetshop.presentation.landingPage.LandingPageFragment
 
 class MainActivity: BaseActivity() {
-
+// first string
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_actvity)
