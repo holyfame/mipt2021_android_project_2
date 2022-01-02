@@ -7,6 +7,7 @@ import org.mipt.planetshop.domain.entity.Planet
 class PlanetRepositoryImpl(
     private val nasaApi: NasaApi
 ) : PlanetRepository {
+
     override suspend fun getPlanets(startDate: String, endDate: String): List<Planet> {
         return nasaApi.getPlanets(startDate = startDate, endDate = endDate).mapNotNull { response ->
             Planet(
@@ -16,4 +17,5 @@ class PlanetRepositoryImpl(
             )
         }
     }
+
 }

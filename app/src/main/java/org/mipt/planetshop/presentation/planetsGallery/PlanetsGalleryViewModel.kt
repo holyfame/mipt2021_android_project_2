@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import org.mipt.planetshop.domain.PlanetRepository
 import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.SingleLiveEvent

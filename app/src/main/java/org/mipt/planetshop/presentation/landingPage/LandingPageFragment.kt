@@ -2,15 +2,11 @@ package org.mipt.planetshop.presentation.landingPage
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.LandingPageBinding
-import org.mipt.planetshop.di.NetworkModule
 import org.mipt.planetshop.presentation.common.BaseFragment
 import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
 

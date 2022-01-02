@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import org.mipt.planetshop.App
 import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.PlanetsGalleryBinding
 import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.BaseFragment
 import org.mipt.planetshop.presentation.planetDetails.PlanetDetailsFragment
-import javax.inject.Inject
-import javax.inject.Provider
 
 @AndroidEntryPoint
 class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
