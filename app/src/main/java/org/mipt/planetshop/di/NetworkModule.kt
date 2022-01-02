@@ -27,14 +27,16 @@ class NetworkModule {
         .baseUrl("https://api.nasa.gov")
         .client(
             OkHttpClient.Builder()
-            .addInterceptor { chain: Chain ->
-                val request = chain.request()
-                    .newBuilder()
-                    .header("api_key", api_key)
-                    .build()
-
-                chain.proceed(request)
-            }
+                // api-key у нас передается как часть запроса, а не в хедере.
+                // Этот кусок тут для примера.
+//            .addInterceptor { chain: Chain ->
+//                val request = chain.request()
+//                    .newBuilder()
+//                    .header("api_key", api_key)
+//                    .build()
+//
+//                chain.proceed(request)
+//            }
             .addInterceptor(
             HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
