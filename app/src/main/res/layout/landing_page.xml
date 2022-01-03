@@ -5,30 +5,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/landing_page_fragment_container"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/landing_page_sample_date"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="15"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/landing_page_sample_description"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        >
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/landing_page_start_date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search_from_hint"
+        app:placeholderText="2020-10-01"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/landing_page_start_date_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/landing_page_end_date_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="@string/search_to_hint"
+        app:placeholderText="2020-10-10"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/landing_page_end_date_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:imeOptions="actionDone"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/landing_page_sample_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" сентября 2020"
+        android:text="Счетчик: "
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,23 +60,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    <Button
-        android:id="@+id/landing_page_increase_date"
+    <TextView
+        android:id="@+id/landing_page_sample_counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Увеличить дату"
-        app:layout_constraintBottom_toTopOf="@+id/landing_page_show_gallery"
+        android:text="15"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/landing_page_sample_description"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <Button
+        android:id="@+id/landing_page_increase_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Увеличить счетчик"
+        app:layout_constraintTop_toBottomOf="@+id/landing_page_sample_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
 
     <Button
         android:id="@+id/landing_page_show_gallery"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="В магазин"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
