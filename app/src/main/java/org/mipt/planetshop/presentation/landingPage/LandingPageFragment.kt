@@ -18,7 +18,7 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     private val viewBinding by viewBinding(LandingPageBinding::bind)
     private val viewModel by viewModels<LandingPageViewModel>()
 
-//    private var planetsGalleryFragment = PlanetsGalleryFragment()
+    private var planetsGalleryFragment = PlanetsGalleryFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,15 +29,11 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
             viewBinding.landingPageSampleCounter.text = date.toString()
         }
         viewBinding.landingPageShowGallery.setOnClickListener {
-            showGallery(
-                viewBinding.landingPageStartDateEdit.text.toString(),
-                viewBinding.landingPageEndDateEdit.text.toString()
-            )
+            showGallery()
         }
 
         viewBinding.landingPageEndDateEdit.setOnEditorActionListener { textView, actionId, keyEvent ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-//                showGallery()
                 search()
             }
             true
@@ -53,18 +49,20 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     }
 
     private fun search() {
-        viewModel.search(
-            viewBinding.landingPageStartDateEdit.text.toString(),
-            viewBinding.landingPageEndDateEdit.text.toString(),
-        )
+        val startDate = viewBinding.landingPageStartDateEdit.text.toString()
+        val endDate = viewBinding.landingPageEndDateEdit.text.toString()
+
+        viewModel.search(startDate, endDate)
+        planetsGalleryFragment = PlanetsGalleryFragment.newInstance(startDate, endDate)
+        showGallery()
     }
 
-    private fun showGallery(startDate: String, endDate: String) {
+    private fun showGallery() {
 //        parentFragmentManager.navigate(PlanetsGalleryFragment.newInstance(startDate, endDate))
-        parentFragmentManager.navigate(PlanetsGalleryFragment.newInstance("2021-10-15", "2021-10-25"))
+        parentFragmentManager.navigate(planetsGalleryFragment)
     }
 
-    fun DateState.getText(): String =
+    private fun DateState.getText(): String =
         when (this) {
             DateState.EMPTY -> "Необходимо заполнить поле"
             DateState.VALID -> ""

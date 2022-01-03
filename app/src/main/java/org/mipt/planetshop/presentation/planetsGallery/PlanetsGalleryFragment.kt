@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -31,8 +30,18 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
         const val END_DATE_KEY = "END_DATE_KEY"
     }
 
+    @Inject lateinit var planetsGalleryViewModelFactory: PlanetsGalleryViewModel.Factory
+
     private val viewBinding by viewBinding(PlanetsGalleryBinding::bind)
-    private val viewModel by viewModels<PlanetsGalleryViewModel>()
+    private val viewModel by viewModels<PlanetsGalleryViewModel> {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T =
+                planetsGalleryViewModelFactory.create(
+                    startDate = arguments?.getString(START_DATE_KEY) ?: "",
+                    endDate = arguments?.getString(END_DATE_KEY) ?: ""
+                ) as T
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

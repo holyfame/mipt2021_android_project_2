@@ -46,4 +46,3 @@ class LandingPageViewModel @Inject constructor() : ViewModel() {
 enum class DateState {
     EMPTY, VALID
 }
-
