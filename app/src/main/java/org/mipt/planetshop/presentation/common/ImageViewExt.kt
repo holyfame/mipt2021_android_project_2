@@ -5,7 +5,6 @@ import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 
-
 fun ImageView.setImageUrl(url: String) {
     val drawable = CircularProgressDrawable(context).apply {
         strokeWidth = 10f
