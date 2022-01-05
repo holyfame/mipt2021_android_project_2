@@ -8,9 +8,13 @@
         <entry key="../../../study/AndroidStudioProjects/PlanetShop/app/src/main/res/layout/planet_details.xml" value="0.23489583333333333" />
         <entry key="../../../study/AndroidStudioProjects/PlanetShop/app/src/main/res/layout/planet_item.xml" value="0.23489583333333333" />
         <entry key="../../../study/AndroidStudioProjects/PlanetShop/app/src/main/res/layout/planets_gallery.xml" value="0.16847826086956522" />
-        <entry key="app/src/main/res/layout/landing_page.xml" value="0.153125" />
-        <entry key="app/src/main/res/layout/planet_details.xml" value="0.153125" />
-        <entry key="app/src/main/res/layout/planets_gallery.xml" value="0.153125" />
+        <entry key="app/src/main/res/layout/landing_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/main_actvity.xml" value="0.126809371484987" />
+        <entry key="app/src/main/res/layout/planet_details.xml" value="0.3476269521406028" />
+        <entry key="app/src/main/res/layout/planet_item.xml" value="0.40685074529987" />
+        <entry key="app/src/main/res/layout/planets_gallery.xml" value="0.13616377007707683" />
+        <entry key="app/src/main/res/layout/purchase_page.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/bottom.xml" value="0.1" />
       </map>
     </option>
   </component>

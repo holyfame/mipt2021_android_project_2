@@ -7,6 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,12 +34,15 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
     @Inject lateinit var planetsGalleryViewModelFactory: PlanetsGalleryViewModel.Factory
 
     private val viewBinding by viewBinding(PlanetsGalleryBinding::bind)
-    private val viewModel by viewModels<PlanetsGalleryViewModel> {
+
+    private val viewModel by viewModels<PlanetsGalleryViewModel>{
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T =
                 planetsGalleryViewModelFactory.create(
-                    startDate = arguments?.getString(START_DATE_KEY) ?: "",
-                    endDate = arguments?.getString(END_DATE_KEY) ?: ""
+                    startDate = "2020-10-01",
+                    endDate = "2020-10-10"
+//                    startDate = arguments?.getString(START_DATE_KEY) ?: "",
+//                    endDate = arguments?.getString(END_DATE_KEY) ?: ""
                 ) as T
         }
     }
@@ -47,10 +51,13 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
         super.onViewCreated(view, savedInstanceState)
 
         val planetsGalleryAdapter = PlanetsGalleryAdapter(viewModel::onPlanetClicked)
+
         with(viewBinding.planetsGalleryList) {
             adapter = planetsGalleryAdapter
-            layoutManager = LinearLayoutManager(context)
+//            layoutManager = LinearLayoutManager(context)
+            layoutManager = GridLayoutManager(context, 2)
         }
+
         viewModel.openDetailAction.observe(viewLifecycleOwner) {
             openDetail(it)
         }
