@@ -1,4 +1,4 @@
-package org.mipt.planetshop.data.network.entity
+package org.mipt.planetshop.data.network.entity.images
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

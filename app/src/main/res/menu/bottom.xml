@@ -11,5 +11,11 @@
         android:icon="@drawable/ic_baseline_shopping_bag"
         android:title="Trash" />
 
+    <item
+        android:id="@+id/weather"
+        android:icon="@drawable/ic_baseline_mars"
+        android:title="Mars Weather" />
+
+
 </menu>
 

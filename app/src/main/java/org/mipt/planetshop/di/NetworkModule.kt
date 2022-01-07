@@ -10,9 +10,11 @@ import okhttp3.Interceptor.Chain
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.mipt.planetshop.data.MarsWeatherRepositoryImpl
 import org.mipt.planetshop.data.PlanetRepositoryImpl
 import org.mipt.planetshop.data.network.NasaApi
 import org.mipt.planetshop.data.network.NasaApi.Companion.api_key
+import org.mipt.planetshop.domain.MarsWeatherRepository
 import org.mipt.planetshop.domain.PlanetRepository
 import retrofit2.Retrofit
 import retrofit2.create
@@ -41,10 +43,10 @@ class NetworkModule {
             HttpLoggingInterceptor()
             .setLevel(HttpLoggingInterceptor.Level.BODY)
             )
-            .connectTimeout(10, SECONDS)
-            .callTimeout(10, SECONDS)
-            .readTimeout(10, SECONDS)
-            .writeTimeout(10, SECONDS)
+            .connectTimeout(30, SECONDS)
+            .callTimeout(   30, SECONDS)
+            .readTimeout(   30, SECONDS)
+            .writeTimeout(  30, SECONDS)
             .build()
         )
         .addConverterFactory(
@@ -58,5 +60,9 @@ class NetworkModule {
 
     @Provides
     fun getRepository(nasaApi: NasaApi): PlanetRepository = PlanetRepositoryImpl(nasaApi)
+
+    @Provides
+    fun getMarsRepository(nasaApi: NasaApi): MarsWeatherRepository = MarsWeatherRepositoryImpl(nasaApi)
+
 
 }
