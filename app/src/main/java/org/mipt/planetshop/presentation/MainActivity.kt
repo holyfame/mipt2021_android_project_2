@@ -1,16 +1,14 @@
 package org.mipt.planetshop.presentation
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import org.mipt.planetshop.R
-import org.mipt.planetshop.databinding.MainActivityBinding
 import org.mipt.planetshop.presentation.common.BaseActivity
 import org.mipt.planetshop.presentation.landingPage.LandingPageFragment
 import org.mipt.planetshop.presentation.marsWeather.MarsWeatherFragment
-import org.mipt.planetshop.presentation.purchaseFragment.PurchaseFragment
+import org.mipt.planetshop.presentation.basket.BasketPageFragment
 
 //import kotlinx.android.synthetic.main.main_activity.*
 
@@ -26,7 +24,7 @@ class MainActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
         val firstFragment =  LandingPageFragment()
-        val secondFragment = PurchaseFragment()
+        val secondFragment = BasketPageFragment()
         val thirdFragment = MarsWeatherFragment()
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView);
