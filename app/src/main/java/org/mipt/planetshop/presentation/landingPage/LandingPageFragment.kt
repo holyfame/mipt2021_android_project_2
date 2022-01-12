@@ -1,6 +1,7 @@
 package org.mipt.planetshop.presentation.landingPage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.viewModels
@@ -18,16 +19,10 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     private val viewBinding by viewBinding(LandingPageBinding::bind)
     private val viewModel by viewModels<LandingPageViewModel>()
 
-    private var planetsGalleryFragment = PlanetsGalleryFragment()
+    private var planetsGalleryFragment : PlanetsGalleryFragment? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding.landingPageIncreaseCounter.setOnClickListener {
-            viewModel.onAdd()
-        }
-        viewModel.counterState.observe(viewLifecycleOwner) { date ->
-            viewBinding.landingPageSampleCounter.text = date.toString()
-        }
         viewBinding.landingPageShowGallery.setOnClickListener {
             showGallery()
         }
@@ -49,8 +44,15 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     }
 
     private fun search() {
-        val startDate = viewBinding.landingPageStartDateEdit.text.toString()
-        val endDate = viewBinding.landingPageEndDateEdit.text.toString()
+        var startDate = viewBinding.landingPageStartDateEdit.text.toString()
+        if (startDate == "") {
+            startDate = viewBinding.landingPageStartDateLayout.placeholderText.toString()
+        }
+
+        var endDate = viewBinding.landingPageEndDateEdit.text.toString()
+        if (endDate == "") {
+            endDate = viewBinding.landingPageEndDateLayout.placeholderText.toString()
+        }
 
         viewModel.search(startDate, endDate)
         planetsGalleryFragment = PlanetsGalleryFragment.newInstance(startDate, endDate)
@@ -58,8 +60,11 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     }
 
     private fun showGallery() {
-//        parentFragmentManager.navigate(PlanetsGalleryFragment.newInstance(startDate, endDate))
-        parentFragmentManager.navigate(planetsGalleryFragment)
+        if (planetsGalleryFragment == null) {
+            search()
+            return
+        }
+        parentFragmentManager.navigate(planetsGalleryFragment!!)
     }
 
     private fun DateState.getText(): String =

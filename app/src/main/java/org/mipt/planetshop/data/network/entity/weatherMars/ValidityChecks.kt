@@ -11,11 +11,11 @@ data class ValidityChecks(
     @SerialName("sols_checked")
     val solsChecked: List<String>?,
     @SerialName("1095")
-    val x1095: X1095?,
+    val x1095: X1095? = null,
     @SerialName("1096")
-    val x1096: X1096?,
+    val x1096: X1096? = null,
     @SerialName("1097")
-    val x1097: X1097?,
+    val x1097: X1097? = null,
     @SerialName("1098")
     val x1098: X1098?,
     @SerialName("1099")

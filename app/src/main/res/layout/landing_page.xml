@@ -6,18 +6,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.MainActivity">
 
+    <TextView
+        android:id="@+id/landing_page_sample_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Магазин планет! \nмам купи плиз"
+        android:textSize="24sp"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_margin="20dp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         >
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/landing_page_start_date_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/search_from_hint"
-        app:placeholderText="2020-10-01"
+        app:placeholderText="@string/landing_page_placeholder_start_date"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -35,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="@string/search_to_hint"
-        app:placeholderText="2020-10-10"
+        app:placeholderText="@string/landing_page_placeholder_end_date"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -49,44 +64,11 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/landing_page_sample_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Счетчик: "
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/landing_page_sample_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="15"
-        android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/landing_page_sample_description"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <Button
-        android:id="@+id/landing_page_increase_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Увеличить счетчик"
-        app:layout_constraintTop_toBottomOf="@+id/landing_page_sample_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
     <Button
         android:id="@+id/landing_page_show_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="В магазин"
+        android:text="@string/landing_page_show_gallery_text"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

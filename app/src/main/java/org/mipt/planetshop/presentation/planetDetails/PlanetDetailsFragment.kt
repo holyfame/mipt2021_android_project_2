@@ -23,10 +23,6 @@ class PlanetDetailsFragment (
             planetDetailsExplanation.text = planet.explanation
             planetDetailsPicture.setImageUrl(planet.url)
         }
-
-        viewBinding.planetDetailsArrowBack.setOnClickListener {
-            parentFragmentManager.popBackStack()
-        }
     }
 
 }

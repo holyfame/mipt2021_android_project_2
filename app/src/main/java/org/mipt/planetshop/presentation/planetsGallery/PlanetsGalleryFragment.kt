@@ -39,10 +39,8 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T =
                 planetsGalleryViewModelFactory.create(
-                    startDate = "2020-10-01",
-                    endDate = "2020-10-10"
-//                    startDate = arguments?.getString(START_DATE_KEY) ?: "",
-//                    endDate = arguments?.getString(END_DATE_KEY) ?: ""
+                    startDate = arguments?.getString(START_DATE_KEY) ?: "",
+                    endDate = arguments?.getString(END_DATE_KEY) ?: ""
                 ) as T
         }
     }
