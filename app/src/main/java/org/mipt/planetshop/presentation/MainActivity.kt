@@ -16,10 +16,6 @@ import org.mipt.planetshop.presentation.basket.BasketPageFragment
 @AndroidEntryPoint
 class MainActivity: BaseActivity() {
 
-//    private val viewModel by viewModels<MainActivityViewModel>()
-//    private val viewBinding by viewBinding(MainActivityBinding::bind)
-
-    // first string
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -33,17 +29,7 @@ class MainActivity: BaseActivity() {
             setCurrentFragment(firstFragment)
         }
 
-
-//        viewBinding.bottomNavigationView.setOnClickListener {
-//            when (itemId) {
-//                R.id.search -> setCurrentFragment(firstFragment)
-//                R.id.trash -> setCurrentFragment(secondFragment)
-//            }
-//            true
-//        }
-
-
-        bottomNavigationView.setOnNavigationItemSelectedListener {
+        bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.search -> setCurrentFragment(firstFragment)
                 R.id.trash -> setCurrentFragment(secondFragment)
@@ -52,8 +38,6 @@ class MainActivity: BaseActivity() {
             true
         }
     }
-
-
     private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.main_activity_container, fragment)

@@ -1,9 +1,10 @@
 package org.mipt.planetshop.presentation.landingPage
 
+import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -12,6 +13,7 @@ import org.mipt.planetshop.databinding.LandingPageBinding
 import org.mipt.planetshop.presentation.common.BaseFragment
 import org.mipt.planetshop.presentation.common.navigate
 import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
+
 
 @AndroidEntryPoint
 class LandingPageFragment : BaseFragment(R.layout.landing_page) {
@@ -28,7 +30,7 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
         }
 
         viewBinding.landingPageEndDateEdit.setOnEditorActionListener { textView, actionId, keyEvent ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
+            if (actionId == EditorInfo.IME_ACTION_DONE ) {
                 search()
             }
             true
@@ -44,19 +46,14 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
     }
 
     private fun search() {
-        var startDate = viewBinding.landingPageStartDateEdit.text.toString()
-        if (startDate == "") {
-            startDate = viewBinding.landingPageStartDateLayout.placeholderText.toString()
-        }
+        val startDate = viewBinding.landingPageStartDateEdit.text.toString()
 
-        var endDate = viewBinding.landingPageEndDateEdit.text.toString()
-        if (endDate == "") {
-            endDate = viewBinding.landingPageEndDateLayout.placeholderText.toString()
-        }
+        val endDate = viewBinding.landingPageEndDateEdit.text.toString()
 
-        viewModel.search(startDate, endDate)
-        planetsGalleryFragment = PlanetsGalleryFragment.newInstance(startDate, endDate)
-        showGallery()
+        if (viewModel.searchValidation(startDate, endDate)) {
+            planetsGalleryFragment = PlanetsGalleryFragment.newInstance(startDate, endDate)
+            showGallery()
+        }
     }
 
     private fun showGallery() {
@@ -64,6 +61,11 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
             search()
             return
         }
+
+        //прячем клавиатуру
+        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
+
         parentFragmentManager.navigate(planetsGalleryFragment!!)
     }
 
@@ -71,6 +73,11 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
         when (this) {
             DateState.EMPTY -> "Необходимо заполнить поле"
             DateState.VALID -> ""
+            DateState.ERROR_BETWEEN -> "Слишком много планет. Введите диапозон менее 3 месяцев"
+            DateState.ERROR_CHRONOLOGY -> "Конечная дата больше начальной"
+            DateState.ERROR_FORMAT -> "Неправильный формат даты. (2022-01-01)"
+            DateState.ERROR_FUTURE_DATE -> "Время еще не наступило"
         }
+
 
 }

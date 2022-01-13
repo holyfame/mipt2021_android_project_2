@@ -9,22 +9,14 @@
 
 
     <ImageView
-        android:id="@+id/image_view"
-        android:layout_width="434dp"
-        android:layout_height="264dp"
+        android:id="@+id/image_view_3"
+        android:layout_width="550dp"
+        android:layout_height="873dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/picture_mars" />
-
-    <ImageView
-        android:id="@+id/image_view_2"
-        android:layout_width="415dp"
-        android:layout_height="250dp"
-        app:layout_constraintBottom_toTopOf="@+id/image_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/picture_mars_2" />
+        app:srcCompat="@drawable/mars_background" />
 
     <TextView
         android:id="@+id/mars_header"
@@ -32,64 +24,110 @@
         android:layout_height="56dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="right"
+        android:layout_margin="20dp"
         android:text="Погода на Марсе"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="@color/white"
-        android:textSize="32dp"
+        android:textSize="38dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/mars_header_2"
+        android:layout_width="match_parent"
+        android:layout_height="28dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="right"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+
+        android:text="@string/cold_weather"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mars_header"/>
 
     <TextView
         android:id="@+id/date_text"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:text="Date: "
+        style="@style/MainButton"
+
+
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_view" />
+        android:background="@drawable/round_outline"
+
+        app:layout_constraintTop_toBottomOf="@id/mars_header"
+        android:text="Date: "
+        />
 
     <TextView
         android:id="@+id/maxTemp_text"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
-        android:text="MAX: = "
-        android:textColor="@color/white"
+        style="@style/MainButton"
 
+
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
+
+        android:text="MAX: = "
         app:layout_constraintTop_toBottomOf="@+id/sol_text" />
 
     <TextView
         android:id="@+id/minTemp_text"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:text="MIN = "
+        style="@style/MainButton"
+
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16sp"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
+
+        android:text="MIN = "
         app:layout_constraintTop_toBottomOf="@+id/maxTemp_text" />
 
     <TextView
         android:id="@+id/sol_text"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginTop="4dp"
-        android:text="SOL"
+        style="@style/MainButton"
+
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.017"
+        app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
+
+        android:text="Solar Day: "
         app:layout_constraintTop_toBottomOf="@+id/date_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
