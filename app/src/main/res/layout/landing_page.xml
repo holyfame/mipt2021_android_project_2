@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Магазин планет! \nмам купи плиз"
+        android:text="Магазин планет! \n\n Выбери временной промежуток и нажми 'В МАГАЗИН'"
         android:textSize="24sp"
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
