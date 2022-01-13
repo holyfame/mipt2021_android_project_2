@@ -29,7 +29,7 @@ class MainActivity: BaseActivity() {
             setCurrentFragment(firstFragment)
         }
 
-        bottomNavigationView.setOnNavigationItemSelectedListener {
+        bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.search -> setCurrentFragment(firstFragment)
                 R.id.trash -> setCurrentFragment(secondFragment)
