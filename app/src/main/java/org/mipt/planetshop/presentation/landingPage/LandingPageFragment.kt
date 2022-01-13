@@ -12,6 +12,7 @@ import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.LandingPageBinding
 import org.mipt.planetshop.presentation.common.BaseFragment
 import org.mipt.planetshop.presentation.common.navigate
+import org.mipt.planetshop.presentation.landingPage.DateState.*
 import org.mipt.planetshop.presentation.planetsGallery.PlanetsGalleryFragment
 
 
@@ -45,18 +46,23 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
         }
     }
 
+    var dateStateValid:Boolean = true;
+
     private fun search() {
         val startDate = viewBinding.landingPageStartDateEdit.text.toString()
 
         val endDate = viewBinding.landingPageEndDateEdit.text.toString()
 
-        if (viewModel.searchValidation(startDate, endDate)) {
+        dateStateValid = viewModel.searchValidation(startDate, endDate)
+        if (dateStateValid) {
             planetsGalleryFragment = PlanetsGalleryFragment.newInstance(startDate, endDate)
             showGallery()
         }
     }
 
     private fun showGallery() {
+        if (!dateStateValid)
+            return
         if (planetsGalleryFragment == null) {
             search()
             return
@@ -71,12 +77,13 @@ class LandingPageFragment : BaseFragment(R.layout.landing_page) {
 
     private fun DateState.getText(): String =
         when (this) {
-            DateState.EMPTY -> "Необходимо заполнить поле"
-            DateState.VALID -> ""
-            DateState.ERROR_BETWEEN -> "Слишком много планет. Введите диапозон менее 3 месяцев"
-            DateState.ERROR_CHRONOLOGY -> "Конечная дата больше начальной"
-            DateState.ERROR_FORMAT -> "Неправильный формат даты. (2022-01-01)"
-            DateState.ERROR_FUTURE_DATE -> "Время еще не наступило"
+            EMPTY -> "Необходимо заполнить поле"
+            VALID -> ""
+            ERROR_BETWEEN -> "Слишком много планет. Введите диапозон менее 3 месяцев"
+            ERROR_CHRONOLOGY -> "Конечная дата больше начальной"
+            ERROR_FORMAT -> "Неправильный формат даты. (2022-01-01)"
+            ERROR_FUTURE_DATE -> "Время еще не наступило"
+            ERROR_TOOEARLY -> "Введите дату позднее 2015 года"
         }
 
 

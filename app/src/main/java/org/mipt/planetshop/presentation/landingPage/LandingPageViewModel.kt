@@ -59,13 +59,18 @@ class LandingPageViewModel @Inject constructor() : ViewModel() {
                 return DateState.ERROR_CHRONOLOGY
             }
 
-            if (!isDateTimeLineValid(dateStart)) {
+            if (!isDateBeforeNowValid(dateStart)) {
                 _startDateState.value = DateState.ERROR_FUTURE_DATE
                 return DateState.ERROR_FUTURE_DATE
             }
-            if (!isDateTimeLineValid(dateEnd)) {
+            if (!isDateBeforeNowValid(dateEnd)) {
                 _endDateState.value = DateState.ERROR_FUTURE_DATE
                 return DateState.ERROR_FUTURE_DATE
+            }
+
+            if (!isDateAfter2010Valid(dateStart)){
+                _startDateState.value = DateState.ERROR_TOOEARLY
+                return DateState.ERROR_TOOEARLY
             }
 
             if (!isDateBetweenValid(dateStart, dateEnd)) {
@@ -93,7 +98,7 @@ class LandingPageViewModel @Inject constructor() : ViewModel() {
 
 
 enum class DateState {
-    EMPTY, VALID, ERROR_BETWEEN, ERROR_CHRONOLOGY, ERROR_FORMAT, ERROR_FUTURE_DATE
+    EMPTY, VALID, ERROR_BETWEEN, ERROR_CHRONOLOGY, ERROR_FORMAT, ERROR_FUTURE_DATE,  ERROR_TOOEARLY
 }
 
 //*
@@ -119,7 +124,17 @@ private fun isDateChronologyValid(dateStart: LocalDate, dateEnd: LocalDate): Boo
     return (dateEnd >= dateStart)
 }
 
-private fun isDateTimeLineValid(dateStart: LocalDate): Boolean {
+private fun isDateBeforeNowValid(dateStart: LocalDate): Boolean {
     return !(dateStart > LocalDate.now())
+}
+
+//*
+//  isDateAfter2000Valid()
+//  Input dateStart: LocalDate
+//  Функция возвращает true, если начальная дата больше 2010 года(учитывая API NASA planet)
+//  return Boolean
+// *
+private fun isDateAfter2010Valid(dateStart: LocalDate): Boolean {
+    return (dateStart.year >= 2015)
 }
 
