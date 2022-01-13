@@ -17,15 +17,4 @@ class MarsWeatherRepositoryImpl(
             nasaApi.getMarsWeather().x1098?.firstUTC ?: ""
         )
     }
-
-//        { response ->
-//            MarsWeather(
-//                weather = response.
-//                url = response.thumbnailUrl?: response.url ?: return@mapNotNull null,
-//                title = response.title ?: "",
-//                explanation = response.explanation ?: ""
-//            )
-//    }
-
-
 }
