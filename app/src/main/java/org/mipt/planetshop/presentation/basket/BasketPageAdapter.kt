@@ -31,7 +31,6 @@ class BasketPageAdapter() : ListAdapter<Planet, BasketPageAdapter.ViewHolder>(
         with(holder.binding) {
             val item = getItem(position)
             planetItemTitle.text = item.title
-//            planetItemExplanation.text = item.explanation
             planetItemPicture.setImageUrl(item.url)
 //            root.setOnClickListener { onPlanetClicked(item) }
         }

@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.mipt.planetshop.R
@@ -52,7 +51,6 @@ class PlanetsGalleryFragment : BaseFragment(R.layout.planets_gallery) {
 
         with(viewBinding.planetsGalleryList) {
             adapter = planetsGalleryAdapter
-//            layoutManager = LinearLayoutManager(context)
             layoutManager = GridLayoutManager(context, 2)
         }
 

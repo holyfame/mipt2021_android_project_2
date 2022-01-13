@@ -10,7 +10,6 @@ import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.PlanetDetailsBinding
 import org.mipt.planetshop.di.BasketRepositoryProvider
 import org.mipt.planetshop.domain.entity.Planet
-import org.mipt.planetshop.presentation.basket.BasketPageViewModel
 import org.mipt.planetshop.presentation.common.BaseFragment
 import org.mipt.planetshop.presentation.common.setImageUrl
 

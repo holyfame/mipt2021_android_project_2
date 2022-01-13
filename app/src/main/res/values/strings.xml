@@ -11,4 +11,5 @@
     <string name="cold_weather">Сегодня холоднова-то. Одевайтесь теплее!</string>
     <string name="mars_errorAPI_text">Марс далеко. Возникла ошибка...</string>
     <string name="mars_loadingAPI">Загружаем данные ...</string>
+    <string name="basket_page_clear_basket_text">Очистить корзину</string>
 </resources>
