@@ -9,7 +9,7 @@
     <item
         android:id="@+id/trash"
         android:icon="@drawable/ic_baseline_shopping_bag"
-        android:title="Trash" />
+        android:title="Basket" />
 
     <item
         android:id="@+id/weather"

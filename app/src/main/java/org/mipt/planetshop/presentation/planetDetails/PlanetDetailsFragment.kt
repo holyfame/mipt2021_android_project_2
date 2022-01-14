@@ -1,7 +1,9 @@
 package org.mipt.planetshop.presentation.planetDetails
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +41,11 @@ class PlanetDetailsFragment (
 
         viewBinding.planetDetailsBuyButton.setOnClickListener {
             viewModel.addPlanetToBasket(planet)
+            val toast = Toast.makeText(requireActivity(), "Planet Added!", Toast.LENGTH_LONG)
+            toast.setGravity(Gravity.CENTER, 0, 0)
+            toast.show()
+
+            parentFragmentManager.popBackStack()
         }
     }
 
