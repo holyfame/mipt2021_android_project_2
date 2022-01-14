@@ -9,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import org.mipt.planetshop.R
 import org.mipt.planetshop.databinding.MarsWeatherBinding
+import org.mipt.planetshop.domain.entity.MarsWeather
 import org.mipt.planetshop.presentation.common.BaseFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -19,6 +20,7 @@ class MarsWeatherFragment:BaseFragment(R.layout.mars_weather) {
     private val viewBinding by viewBinding(MarsWeatherBinding::bind)
     private val viewModel by viewModels<MarsWeatherViewModel>()
 
+    private val previousWeather = MarsWeather("SOL: 1098","Min Temperature = -12.146 F","Max Temperature = -93.348 F", "28 December 2021")
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -28,10 +30,11 @@ class MarsWeatherFragment:BaseFragment(R.layout.mars_weather) {
             when (state) {
                 is WeatherState.Error -> {
                     val textError = getString(R.string.mars_errorAPI_text)
-                    viewBinding.dateText.text =    textError
-                    viewBinding.solText.text =     textError
-                    viewBinding.minTempText.text = textError
-                    viewBinding.maxTempText.text = textError
+                    viewBinding.dateText.text =    previousWeather.date
+                    viewBinding.solText.text =     previousWeather.sol
+                    viewBinding.minTempText.text = previousWeather.mnAT
+                    viewBinding.maxTempText.text = previousWeather.mxAT
+                    viewBinding.marsHeader2.text = "Актуальные данные еще не получены Марсоходом"
                 }
                 is WeatherState.Loading -> {
                     val textLoading = getString(R.string.mars_loadingAPI)
