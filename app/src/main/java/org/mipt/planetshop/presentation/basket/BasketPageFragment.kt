@@ -2,7 +2,9 @@ package org.mipt.planetshop.presentation.basket
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -30,9 +32,9 @@ class BasketPageFragment: BaseFragment(R.layout.basket_page) {
         }
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         var basketAdapter = BasketPageAdapter(viewModel)
 
         with(viewBinding.basketPageList) {
@@ -40,11 +42,7 @@ class BasketPageFragment: BaseFragment(R.layout.basket_page) {
             layoutManager = LinearLayoutManager(context)
         }
 
-//        viewModel.basketState.observe(viewLifecycleOwner) {
-//            Log.d("PIZDEC", "MAFRENDS")
-            basketAdapter.submitList(viewModel.basketState.value)
-//            viewBinding.basketPageClearBasket.isVisible = true
-//        }
+        basketAdapter.submitList(viewModel.basketState.value)
 
         viewBinding.basketPageClearBasket.setOnClickListener {
 
@@ -56,17 +54,11 @@ class BasketPageFragment: BaseFragment(R.layout.basket_page) {
                     layoutManager = LinearLayoutManager(context)
                 }
 
-                viewBinding.basketPageClearBasket.isVisible = false
+                parentFragmentManager.navigate(BasketPageFragment(), true)
+//                viewBinding.basketPageClearBasket.isVisible = false
             }
-//            parentFragmentManager.navigate(BasketPageFragment())
 
         }
 
-        fun submPlanets(plans : List<Planet>, basketAd : BasketPageAdapter) {
-            with(viewBinding.basketPageList) {
-                adapter = basketAd
-                layoutManager = LinearLayoutManager(context)
-            }
-        }
     }
 }
