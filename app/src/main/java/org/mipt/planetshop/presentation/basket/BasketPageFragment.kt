@@ -40,13 +40,11 @@ class BasketPageFragment: BaseFragment(R.layout.basket_page) {
             layoutManager = LinearLayoutManager(context)
         }
 
-
-        viewModel.basketState.observe(viewLifecycleOwner) {
-            Log.d("PIZDEC", "MAFRENDS")
-            basketAdapter.submitList(it)
-
-            viewBinding.basketPageClearBasket.isVisible = true
-        }
+//        viewModel.basketState.observe(viewLifecycleOwner) {
+//            Log.d("PIZDEC", "MAFRENDS")
+            basketAdapter.submitList(viewModel.basketState.value)
+//            viewBinding.basketPageClearBasket.isVisible = true
+//        }
 
         viewBinding.basketPageClearBasket.setOnClickListener {
 

@@ -32,8 +32,16 @@ class BasketPageViewModel (
     fun remBasketItem(pos : Int) {
         viewModelScope.launch {
             basketRepository.removePlanet(pos)
+//            basketState.value = basketRepository.getPlanets()
+        }
+    }
+
+
+    fun getSmthCool(): List<Planet>? {
+        viewModelScope.launch {
             basketState.value = basketRepository.getPlanets()
         }
+        return basketState.value
     }
 
 

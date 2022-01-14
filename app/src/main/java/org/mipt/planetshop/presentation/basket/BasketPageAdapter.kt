@@ -1,5 +1,6 @@
 package org.mipt.planetshop.presentation.basket
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import org.mipt.planetshop.di.BasketRepositoryProvider
 import org.mipt.planetshop.domain.BasketRepository
 import org.mipt.planetshop.domain.entity.Planet
 import org.mipt.planetshop.presentation.common.setImageUrl
+import org.mipt.planetshop.presentation.planetDetails.PlanetDetailsViewModel
 
 class BasketPageAdapter(val viewModel : BasketPageViewModel) : ListAdapter<Planet, BasketPageAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<Planet>() {
@@ -27,7 +29,7 @@ class BasketPageAdapter(val viewModel : BasketPageViewModel) : ListAdapter<Plane
                 Boolean = oldItem == newItem
     }
 ) {
-
+    var removedPosition : Int ? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -38,6 +40,7 @@ class BasketPageAdapter(val viewModel : BasketPageViewModel) : ListAdapter<Plane
             )
         )
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         with(holder.binding) {
@@ -47,10 +50,11 @@ class BasketPageAdapter(val viewModel : BasketPageViewModel) : ListAdapter<Plane
 
 //            root.setOnClickListener { onPlanetClicked(item) }
             delButton.setOnClickListener{
-                Log.d("1 POS 1", "${viewModel.basketState.value?.size}")
+                Log.d("SIZE BEFORE 1", "${viewModel.basketState.value?.size}")
                 viewModel.remBasketItem(position)
-                Log.d("2 POS 2", "${viewModel.basketState.value?.size}")
-
+//                viewModel.clearBasket()
+                Log.d("SIZE AFTER 2", "${viewModel.basketState.value?.size}")
+                notifyDataSetChanged()
 
 
 //                currentList.removeAt(position)
