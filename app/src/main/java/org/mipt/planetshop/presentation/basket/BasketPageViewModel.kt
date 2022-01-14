@@ -25,8 +25,16 @@ class BasketPageViewModel (
     fun clearBasket() {
         viewModelScope.launch {
             basketRepository.clear()
-            _basketState.value = basketRepository.getPlanets()
+            basketState.value = basketRepository.getPlanets()
         }
     }
+
+    fun remBasketItem(pos : Int) {
+        viewModelScope.launch {
+            basketRepository.removePlanet(pos)
+            basketState.value = basketRepository.getPlanets()
+        }
+    }
+
 
 }
